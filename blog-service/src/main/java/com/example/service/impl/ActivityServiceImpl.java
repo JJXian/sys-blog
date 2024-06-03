@@ -1,6 +1,8 @@
 package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.enums.LikesModuleEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.*;
@@ -21,7 +23,7 @@ import java.util.stream.Collectors;
  * 活动业务处理
  **/
 @Service
-public class ActivityServiceImpl implements ActivityService {
+public class ActivityServiceImpl extends ServiceImpl<ActivityMapper,Activity> implements ActivityService {
 
     @Resource
     private ActivityMapper activityMapper;
@@ -60,9 +62,12 @@ public class ActivityServiceImpl implements ActivityService {
 
     /**
      * 修改
+     *
+     * @return
      */
-    public void updateById(Activity activity) {
+    public boolean updateById(Activity activity) {
         activityMapper.updateById(activity);
+        return false;
     }
 
     /**
@@ -70,6 +75,7 @@ public class ActivityServiceImpl implements ActivityService {
      */
     public Activity selectById(Integer id) {
         Activity activity = activityMapper.selectById(id);
+
         this.setAct(activity, TokenUtils.getCurrentUser());
 
         int likesCount = likesService.selectByFidAndModule(id, LikesModuleEnum.ACTIVITY.getValue());

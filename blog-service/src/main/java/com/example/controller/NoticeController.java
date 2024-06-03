@@ -32,7 +32,7 @@ public class NoticeController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        noticeService.deleteById(id);
+        noticeService.removeById(id);
         return Result.success();
     }
 
@@ -41,7 +41,7 @@ public class NoticeController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        noticeService.deleteBatch(ids);
+        noticeService.removeBatchByIds(ids);
         return Result.success();
     }
 
@@ -59,7 +59,7 @@ public class NoticeController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Notice notice = noticeService.selectById(id);
+        Notice notice = noticeService.getById(id);
         return Result.success(notice);
     }
 

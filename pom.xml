@@ -8,6 +8,8 @@
   <packaging>pom</packaging>
   <modules>
     <module>blog-service</module>
+    <module>user-service</module>
+      <module>blog-common</module>
   </modules>
 
   <parent>
@@ -32,21 +34,19 @@
         <artifactId>spring-boot-starter-web</artifactId>
         <version>2.5.9</version>
       </dependency>
-
-
-
+<!--      mysql依赖-->
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <version>8.0.19</version>
       </dependency>
-
+<!--      mybatis-->
       <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
         <artifactId>mybatis-spring-boot-starter</artifactId>
         <version>2.2.1</version>
       </dependency>
-
+<!--      pagehelper-->
       <dependency>
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -58,23 +58,17 @@
           </exclusion>
         </exclusions>
       </dependency>
-
+<!--    jwt-->
       <dependency>
         <groupId>com.auth0</groupId>
         <artifactId>java-jwt</artifactId>
         <version>4.3.0</version>
       </dependency>
-
+<!--      hutool-->
       <dependency>
         <groupId>cn.hutool</groupId>
         <artifactId>hutool-all</artifactId>
         <version>5.8.18</version>
-      </dependency>
-
-      <dependency>
-        <groupId>com.auth0</groupId>
-        <artifactId>java-jwt</artifactId>
-        <version>4.3.0</version>
       </dependency>
 
       <dependency>
@@ -102,5 +96,20 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+  <dependencies>
+    <!--Mybatis-plus的依赖-->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>3.5.3.1</version>
+    </dependency>
+
+    <!--lombok的依赖，为了优化实体类，可以不去实现实体类的set()、get()-->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
 
 </project>

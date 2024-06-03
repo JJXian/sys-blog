@@ -32,7 +32,7 @@ public class CategoryController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        categoryService.deleteById(id);
+        categoryService.removeById(id);
         return Result.success();
     }
 
@@ -41,7 +41,7 @@ public class CategoryController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        categoryService.deleteBatch(ids);
+        categoryService.removeBatchByIds(ids);
         return Result.success();
     }
 

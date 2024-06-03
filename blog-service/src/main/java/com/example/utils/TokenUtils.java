@@ -7,6 +7,8 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.example.common.Constants;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
+import com.example.service.AdminService;
+import com.example.service.UserService;
 import com.example.service.impl.AdminServiceImpl;
 import com.example.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
@@ -28,8 +30,8 @@ public class TokenUtils {
 
     private static final Logger log = LoggerFactory.getLogger(TokenUtils.class);
 
-    private static AdminServiceImpl staticAdminService;
-    private static UserServiceImpl staticUserService;
+    private static AdminService staticAdminService;
+    private static UserService staticUserService;
 
     @Resource
     AdminServiceImpl adminService;
@@ -64,7 +66,8 @@ public class TokenUtils {
                 String userId = userRole.split("-")[0];  // 获取用户id
                 String role = userRole.split("-")[1];    // 获取角色
                 if (RoleEnum.ADMIN.name().equals(role)) {
-                    return staticAdminService.selectById(Integer.valueOf(userId));
+//                    return staticAdminService.selectById(Integer.valueOf(userId));
+                    return staticAdminService.getById(Integer.valueOf(userId));
                 } else if (RoleEnum.USER.name().equals(role)) {
                     return staticUserService.selectById(Integer.valueOf(userId));
                 }

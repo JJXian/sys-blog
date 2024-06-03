@@ -1,11 +1,12 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.ActivitySign;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-public interface ActivitySignService {
+public interface ActivitySignService extends IService<ActivitySign> {
     void add(ActivitySign activitySign);
 
     void deleteById(Integer id);

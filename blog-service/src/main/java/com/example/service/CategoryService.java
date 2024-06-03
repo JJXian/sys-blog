@@ -1,18 +1,19 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Category;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-public interface CategoryService {
+public interface CategoryService extends IService<Category> {
     void add(Category category);
 
     void deleteById(Integer id);
 
     void deleteBatch(List<Integer> ids);
 
-    void updateById(Category category);
+    boolean updateById(Category category);
 
     Category selectById(Integer id);
 

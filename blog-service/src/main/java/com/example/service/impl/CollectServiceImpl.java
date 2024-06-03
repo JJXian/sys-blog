@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.entity.Account;
 import com.example.entity.Collect;
 import com.example.mapper.CollectMapper;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 @Service
-public class CollectServiceImpl implements CollectService {
+public class CollectServiceImpl extends ServiceImpl<CollectMapper,Collect> implements CollectService {
 
     @Resource
     CollectMapper collectMapper;

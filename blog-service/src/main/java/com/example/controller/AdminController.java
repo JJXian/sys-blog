@@ -4,6 +4,7 @@ import com.example.common.Result;
 import com.example.entity.Admin;
 import com.example.service.AdminService;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * 管理员前端操作接口
  **/
+@Slf4j
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -32,7 +34,8 @@ public class AdminController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        adminService.deleteById(id);
+//        adminService.deleteById(id);
+        adminService.removeById(id);
         return Result.success();
     }
 
@@ -41,7 +44,8 @@ public class AdminController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        adminService.deleteBatch(ids);
+//        adminService.deleteBatch(ids);
+        adminService.removeBatchByIds(ids);
         return Result.success();
     }
 
@@ -59,7 +63,8 @@ public class AdminController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Admin admin = adminService.selectById(id);
+//        Admin admin = adminService.selectById(id);
+        Admin admin = adminService.getById(id);
         return Result.success(admin);
     }
 

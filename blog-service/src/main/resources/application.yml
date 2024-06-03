@@ -13,13 +13,25 @@ spring:
       max-file-size: 100MB
       max-request-size: 100MB
 
-# 配置mybatis实体和xml映射
-mybatis:
+## 配置mybatis实体和xml映射
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml
+#  type-aliases-package: com.example.entity
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    map-underscore-to-camel-case: true
+
+#配置mybatis-plus
+mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.example.entity
+  type-aliases-package: com.example.entity # 扫描包
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
     map-underscore-to-camel-case: true
+    cache-enabled: false # 是否开启二级缓存
+  global-config:
+    db-config:
+      id-type: assign_id # id为雪花算法生成
 
 # 分页
 pagehelper:

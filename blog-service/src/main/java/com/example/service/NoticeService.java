@@ -1,11 +1,12 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Notice;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-public interface NoticeService {
+public interface NoticeService extends IService<Notice> {
 
     void add(Notice notice);
 
@@ -13,7 +14,7 @@ public interface NoticeService {
 
     void deleteBatch(List<Integer> ids);
 
-    void updateById(Notice notice);
+    boolean updateById(Notice notice);
 
     Notice selectById(Integer id);
 

@@ -1,18 +1,19 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Comment;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-public interface CommentService {
+public interface CommentService extends IService<Comment> {
     void add(Comment comment);
 
     void deleteById(Integer id);
 
     void deleteBatch(List<Integer> ids);
 
-    void updateById(Comment comment);
+    boolean updateById(Comment comment);
 
     Comment selectById(Integer id);
 

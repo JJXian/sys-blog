@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.entity.Blog;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -11,17 +12,17 @@ import java.util.List;
  * 操作blog相关数据接口
  */
 @Mapper
-public interface BlogMapper {
+public interface BlogMapper extends BaseMapper<Blog> {
 
     /**
      * 新增
      */
-    int insert(Blog blog);
+//    int insert(Blog blog);
 
     /**
      * 删除
      */
-    int deleteById(Integer id);
+//    int deleteById(Integer id);
 
     /**
      * 修改
@@ -31,7 +32,7 @@ public interface BlogMapper {
     /**
      * 根据ID查询
      */
-    Blog selectById(Integer id);
+//    Blog selectById(Integer id);
 
     /**
      * 查询所有

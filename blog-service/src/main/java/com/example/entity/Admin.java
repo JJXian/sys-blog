@@ -1,5 +1,8 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 
 /**
@@ -9,8 +12,10 @@ public class Admin extends Account implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /** ID */
+    @TableId("id")
     private Integer id;
     /** 用户名 */
+    @TableField("username")
     private String username;
     /** 密码 */
     private String password;

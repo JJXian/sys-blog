@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.entity.Account;
 import com.example.entity.ActivitySign;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ActivitySignServiceImpl implements ActivitySignService {
+public class ActivitySignServiceImpl  extends ServiceImpl<ActivitySignMapper,ActivitySign> implements ActivitySignService {
 
     @Resource
     ActivitySignMapper activitySignMapper;

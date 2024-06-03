@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.Constants;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
@@ -20,7 +21,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements UserService {
 
     @Resource
     private UserMapper userMapper;
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
         // 4. 默认用户角色
         user.setRole(RoleEnum.USER.name());
         userMapper.insert(user);
+
     }
 
     public void deleteById(Integer id) {
@@ -55,8 +57,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public void updateById(User user) {
+    public boolean updateById(User user) {
         userMapper.updateById(user);
+        return false;
     }
 
     public User selectById(Integer id) {
@@ -82,7 +85,6 @@ public class UserServiceImpl implements UserService {
         if (ObjectUtil.isNull(dbUser)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
-        //TODO        进行MD5加密
         String password = account.getPassword();
         password = DigestUtils.md5DigestAsHex(password.getBytes());
         if (!password.equals(dbUser.getPassword())) {

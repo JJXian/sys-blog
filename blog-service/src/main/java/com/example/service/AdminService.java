@@ -1,20 +1,22 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Admin;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
-public interface AdminService {
+
+public interface AdminService extends IService<Admin>{
     void add(Admin admin);
 
     void deleteById(Integer id);
 
     void deleteBatch(List<Integer> ids);
 
-    void updateById(Admin admin);
+    boolean updateById(Admin admin);
 
-    Admin selectById(Integer id);
+//    Admin selectById(Integer id);
 
     List<Admin> selectAll(Admin admin);
 

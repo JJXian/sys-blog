@@ -32,7 +32,7 @@ public class CommentController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        commentService.deleteById(id);
+        commentService.removeById(id);
         return Result.success();
     }
 
@@ -41,7 +41,7 @@ public class CommentController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        commentService.deleteBatch(ids);
+        commentService.removeBatchByIds(ids);
         return Result.success();
     }
 
@@ -59,7 +59,7 @@ public class CommentController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Comment comment = commentService.selectById(id);
+        Comment comment = commentService.getById(id);
         return Result.success(comment);
     }
 

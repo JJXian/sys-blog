@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.entity.Account;
 import com.example.entity.Notice;
 import com.example.mapper.NoticeMapper;
@@ -16,7 +17,7 @@ import java.util.List;
  * 公告信息表业务处理
  **/
 @Service
-public class NoticeServiceImpl implements NoticeService {
+public class NoticeServiceImpl extends ServiceImpl<NoticeMapper,Notice> implements NoticeService {
 
     @Resource
     private NoticeMapper noticeMapper;
@@ -49,9 +50,12 @@ public class NoticeServiceImpl implements NoticeService {
 
     /**
      * 修改
+     *
+     * @return
      */
-    public void updateById(Notice notice) {
+    public boolean updateById(Notice notice) {
         noticeMapper.updateById(notice);
+        return false;
     }
 
     /**

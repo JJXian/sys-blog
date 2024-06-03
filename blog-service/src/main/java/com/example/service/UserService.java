@@ -1,12 +1,13 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.User;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 
 
-public interface UserService {
+public interface UserService extends IService<User> {
 
     void add(User user);
 
@@ -20,5 +21,5 @@ public interface UserService {
 
     PageInfo<User> selectPage(User user, Integer pageNum, Integer pageSize);
 
-    void updateById(User user);
+    boolean updateById(User user);
 }

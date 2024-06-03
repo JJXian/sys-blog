@@ -1,6 +1,7 @@
 package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.entity.Comment;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
  * 业务处理
  **/
 @Service
-public class CommentServiceImpl implements CommentService {
+public class CommentServiceImpl extends ServiceImpl<CommentMapper,Comment> implements CommentService {
 
     @Resource
     private CommentMapper commentMapper;
@@ -59,9 +60,12 @@ public class CommentServiceImpl implements CommentService {
 
     /**
      * 修改
+     *
+     * @return
      */
-    public void updateById(Comment comment) {
+    public boolean updateById(Comment comment) {
         commentMapper.updateById(comment);
+        return false;
     }
 
     /**

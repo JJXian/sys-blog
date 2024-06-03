@@ -34,7 +34,7 @@ public class BlogController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        blogService.deleteById(id);
+        blogService.removeById(id);
         return Result.success();
     }
 
@@ -43,7 +43,7 @@ public class BlogController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {
-        blogService.deleteBatch(ids);
+        blogService.removeBatchByIds(ids);
         return Result.success();
     }
 
@@ -67,7 +67,7 @@ public class BlogController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Blog blog = blogService.selectById(id);
+        Blog blog = blogService.getById(id);
         return Result.success(blog);
     }
 

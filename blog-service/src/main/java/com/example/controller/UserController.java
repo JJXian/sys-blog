@@ -27,7 +27,8 @@ public class UserController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        userService.deleteById(id);
+//        userService.deleteById(id);
+        userService.removeById(id);
         return Result.success();
     }
 
@@ -36,7 +37,8 @@ public class UserController {
      */
     @DeleteMapping("/delete/batch")
     public Result deleteBatch(@RequestBody List<Integer> ids) {  //  [1,2,3]
-        userService.deleteBatch(ids);
+//        userService.deleteBatch(ids);
+        userService.removeBatchByIds(ids);
         return Result.success();
     }
 
@@ -54,7 +56,8 @@ public class UserController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        User user = userService.selectById(id);
+//        User user = userService.selectById(id);
+        User user = userService.getById(id);
         return Result.success(user);
     }
 

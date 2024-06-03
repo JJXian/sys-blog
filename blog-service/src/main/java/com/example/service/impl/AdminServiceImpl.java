@@ -1,6 +1,8 @@
 package com.example.service.impl;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.Constants;
 import com.example.common.enums.ResultCodeEnum;
 import com.example.common.enums.RoleEnum;
@@ -22,7 +24,8 @@ import java.util.List;
  * 管理员业务处理
  **/
 @Service
-public class AdminServiceImpl implements AdminService {
+
+public class AdminServiceImpl extends ServiceImpl<AdminMapper,Admin> implements AdminService {
 
     @Resource
     private AdminMapper adminMapper;
@@ -31,7 +34,16 @@ public class AdminServiceImpl implements AdminService {
      * 新增
      */
     public void add(Admin admin) {
-        Admin dbAdmin = adminMapper.selectByUsername(admin.getUsername());
+//        Admin dbAdmin = adminMapper.selectByUsername(admin.getUsername());
+//         修改为mybatis-plus
+//        1、构建查询条件
+        QueryWrapper<Admin> wrapper = new QueryWrapper<Admin>()
+                .select("*")
+                .eq("username",admin.getUsername());
+        Admin dbAdmin = adminMapper.selectOne(wrapper);
+//        Admin dbAdmin =lambdaQuery()
+//                .eq(Admin::getUsername,admin.getUsername()).one();
+//        System.out.println(dbAdmin.getUsername()+"---------------------------------------------------");
         if (ObjectUtil.isNotNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_EXIST_ERROR);
         }
@@ -64,16 +76,21 @@ public class AdminServiceImpl implements AdminService {
     /**
      * 修改
      */
-    public void updateById(Admin admin) {
-        adminMapper.updateById(admin);
+    public boolean updateById(Admin admin) {
+        int row = adminMapper.updateById(admin);
+        if(row!=0){
+            return true;
+        }
+        return false;
+
     }
 
     /**
      * 根据ID查询
      */
-    public Admin selectById(Integer id) {
-        return adminMapper.selectById(id);
-    }
+//    public Admin selectById(Integer id) {
+//        return adminMapper.selectById(id);
+//    }
 
     /**
      * 查询所有
@@ -95,7 +112,14 @@ public class AdminServiceImpl implements AdminService {
      * 登录
      */
     public Account login(Account account) {
-        Account dbAdmin = adminMapper.selectByUsername(account.getUsername());
+//        Account dbAdmin = adminMapper.selectByUsername(account.getUsername());
+
+        QueryWrapper<Admin> wrapper = new QueryWrapper<Admin>()
+                .select("*")
+                .eq("username",account.getUsername());
+        Admin dbAdmin = adminMapper.selectOne(wrapper);
+
+
         if (ObjectUtil.isNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
@@ -134,7 +158,13 @@ public class AdminServiceImpl implements AdminService {
      * 修改密码
      */
     public void updatePassword(Account account) {
-        Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
+//        Admin dbAdmin = adminMapper.selectByUsername(account.getUsername());
+
+        QueryWrapper<Admin> wrapper = new QueryWrapper<Admin>()
+                .select("*")
+                .eq("username",account.getUsername());
+        Admin dbAdmin = adminMapper.selectOne(wrapper);
+
         if (ObjectUtil.isNull(dbAdmin)) {
             throw new CustomException(ResultCodeEnum.USER_NOT_EXIST_ERROR);
         }
@@ -148,10 +178,7 @@ public class AdminServiceImpl implements AdminService {
         newPassword = DigestUtils.md5DigestAsHex(newPassword.getBytes());
         dbAdmin.setPassword(newPassword);
 
-//        if (!account.getPassword().equals(dbAdmin.getPassword())) {
-//            throw new CustomException(ResultCodeEnum.PARAM_PASSWORD_ERROR);
-//        }
-//        dbAdmin.setPassword(account.getNewPassword());
+
         adminMapper.updateById(dbAdmin);
     }
 

@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.entity.Admin;
 import org.apache.ibatis.annotations.Select;
 
@@ -8,17 +9,17 @@ import java.util.List;
 /**
  * 操作admin相关数据接口
 */
-public interface AdminMapper {
+public interface AdminMapper extends BaseMapper<Admin> {
 
     /**
       * 新增
     */
-    int insert(Admin admin);
+//    int insert(Admin admin);
 
     /**
       * 删除
     */
-    int deleteById(Integer id);
+//    int deleteById(Integer id);
 
     /**
       * 修改
@@ -28,7 +29,7 @@ public interface AdminMapper {
     /**
       * 根据ID查询
     */
-    Admin selectById(Integer id);
+//    Admin selectById(Integer id);
 
     /**
       * 查询所有

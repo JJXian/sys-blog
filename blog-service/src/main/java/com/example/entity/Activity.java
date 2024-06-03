@@ -1,8 +1,12 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 public class Activity {
 
     /** ID */
+    @TableId(type = IdType.AUTO)
     private Integer id;
     /** 活动名称 */
     private String name;

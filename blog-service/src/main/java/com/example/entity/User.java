@@ -1,7 +1,12 @@
 package com.example.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 public class User extends Account {
 
+    @TableId(type = IdType.AUTO)
     private Integer id;
     private String username;
     private String password;

@@ -4,6 +4,8 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.common.enums.LikesModuleEnum;
 import com.example.common.enums.RoleEnum;
 import com.example.entity.*;
@@ -22,7 +24,7 @@ import java.util.stream.Collectors;
  * 博客信息业务处理
  **/
 @Service
-public class BlogServiceImpl implements BlogService {
+public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements BlogService {
 
     @Resource
     private BlogMapper blogMapper;
@@ -66,9 +68,12 @@ public class BlogServiceImpl implements BlogService {
 
     /**
      * 修改
+     *
+     * @return
      */
-    public void updateById(Blog blog) {
+    public boolean updateById(Blog blog) {
         blogMapper.updateById(blog);
+        return false;
     }
 
     /**
@@ -77,6 +82,7 @@ public class BlogServiceImpl implements BlogService {
     public Blog selectById(Integer id) {
         Blog blog = blogMapper.selectById(id);
         User user = userService.selectById(blog.getUserId());
+
         List<Blog> userBlogList = blogMapper.selectUserBlog(user.getId());
         user.setBlogCount(userBlogList.size());
         //  当前用户收到的点赞和收藏的数据

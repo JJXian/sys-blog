@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.entity.Category;
 import com.example.mapper.CategoryMapper;
 import com.example.service.CategoryService;
@@ -13,7 +14,7 @@ import java.util.List;
  * 博客分类业务处理
  **/
 @Service
-public class CategoryServiceImpl implements CategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper,Category> implements CategoryService {
 
     @Resource
     private CategoryMapper categoryMapper;
@@ -43,9 +44,12 @@ public class CategoryServiceImpl implements CategoryService {
 
     /**
      * 修改
+     *
+     * @return
      */
-    public void updateById(Category category) {
+    public boolean updateById(Category category) {
         categoryMapper.updateById(category);
+        return false;
     }
 
     /**

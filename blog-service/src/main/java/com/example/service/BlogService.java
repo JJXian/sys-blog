@@ -1,19 +1,20 @@
 package com.example.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.entity.Blog;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
 import java.util.Set;
 
-public interface BlogService {
+public interface BlogService extends IService<Blog> {
     void add(Blog blog);
 
     void deleteById(Integer id);
 
     void deleteBatch(List<Integer> ids);
 
-    void updateById(Blog blog);
+    boolean updateById(Blog blog);
 
     void updateReadCount(Integer blogId);
 

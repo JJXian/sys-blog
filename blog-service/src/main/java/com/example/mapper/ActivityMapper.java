@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.entity.Activity;
 import org.apache.ibatis.annotations.Update;
 
@@ -8,17 +9,17 @@ import java.util.List;
 /**
  * 操作activity相关数据接口
  */
-public interface ActivityMapper {
+public interface ActivityMapper extends BaseMapper<Activity> {
 
     /**
      * 新增
      */
-    int insert(Activity activity);
+//    int insert(Activity activity);
 
     /**
      * 删除
      */
-    int deleteById(Integer id);
+//    int deleteById(Integer id);
 
     /**
      * 修改
@@ -28,7 +29,7 @@ public interface ActivityMapper {
     /**
      * 根据ID查询
      */
-    Activity selectById(Integer id);
+//    Activity selectById(Integer id);
 
     /**
      * 查询所有

@@ -5,14 +5,25 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.Dict;
 import cn.hutool.core.thread.ThreadUtil;
 import cn.hutool.core.util.StrUtil;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.common.auth.CredentialsProviderFactory;
+import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;
+import com.aliyuncs.exceptions.ClientException;
 import com.example.common.Result;
+import com.example.utils.AliOssUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 /**
  * 文件接口
@@ -31,7 +42,7 @@ public class FileController {
 
     /**
      * 文件上传
-     */
+//     */
     @PostMapping("/upload")
     public Result upload(MultipartFile file) {
         String flag;
@@ -54,6 +65,33 @@ public class FileController {
         String http = "http://" + ip + ":" + port + "/files/";
         return Result.success(http + flag + "-" + fileName);  //  http://localhost:9090/files/1697438073596-avatar.png
     }
+
+//    /**
+//     * 上传到阿里云oss
+//     */
+//    @Autowired
+//    private AliOssUtil aliOssUtil;
+//    @PostMapping("/upload")
+//    public Result uploadFile(MultipartFile file) {
+////        获取原始文件名
+//        String originalFilename = file.getOriginalFilename();
+////        截取最后一个.xxx
+//        String suffixName = originalFilename.substring(originalFilename.lastIndexOf("."));
+//        //        拼接时间日期
+//        LocalDateTime now = LocalDateTime.now();
+//        String format = now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"));
+////        生成UUID 拼接后缀,避免重名问题
+//        String objectName = format + "/" + UUID.randomUUID().toString() + suffixName;
+//
+//        try {
+////            返回文件上传路径
+//            String uploadedPath = aliOssUtil.upload(file.getBytes(), objectName);
+//            System.out.println(uploadedPath);
+//            return Result.success(uploadedPath);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     /**
      * 富文本文件上传
@@ -105,6 +143,9 @@ public class FileController {
             System.out.println("文件下载失败");
         }
     }
+
+
+
 
     /**
      * 删除文件

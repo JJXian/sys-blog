@@ -42,3 +42,10 @@ pagehelper:
   params: count=countSql
 
 ip: localhost
+
+alioss:
+  access-key-id: LTAI5tQ3atsyXyYHvPFE8iTp
+  access-key-secret: Fu3LpH2IjQYhQ5jFghcIIoPl8TRKry
+  bucket-name: xian-blog
+  endpoint: oss-cn-hangzhou.aliyuncs.com
+

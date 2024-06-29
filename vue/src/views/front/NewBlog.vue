@@ -3,7 +3,7 @@
     <div class="card" style="margin-bottom: 100px">
       <div style="font-weight: bold; font-size: 24px; margin-bottom: 50px">发表新博客/编辑博客</div>
       <el-form :model="form" label-width="100px" style="padding-right: 50px" :rules="rules" ref="formRef">
-        <el-form-item label="标题" prop="title">
+        <el-form-item label="标题" prop="title" :rules="[{ required: true, message: '标题不能为空', trigger: 'blur' }]">
           <el-input v-model="form.title" placeholder="标题"></el-input>
         </el-form-item>
         <el-form-item label="简介" prop="descr">
@@ -41,7 +41,9 @@
           <div id="editor"></div>
         </el-form-item>
       </el-form>
-      <div style="text-align: center"><el-button type="primary" size="medium" style="width: 100px" @click="save">保 存</el-button></div>
+<!--      <div style="text-align: center"><el-button type="primary" size="medium" style="width: 100px" @click="save">保 存</el-button></div>-->
+      <div style="text-align: center"><el-button type="primary" size="medium" style="width: 100px" @click="showConfirmDialog">保 存</el-button></div>
+
     </div>
   </div>
 </template>
@@ -81,7 +83,28 @@ export default {
     this.setRichText()
   },
   methods: {
+    showConfirmDialog() {
+      this.$confirm('确认保存吗?', '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 用户点击确认按钮的逻辑
+        this.save(); // 执行保存操作
+
+      }).catch(() => {
+        // 用户点击取消按钮的逻辑
+        // 可以选择关闭弹窗或执行其他操作
+      });
+    },
     save() {   // 保存按钮触发的逻辑  它会触发新增或者更新
+      if (!this.form.title) {
+        this.$message.error('标题不能为空');
+        return; // 返回，不执行保存操作
+      }else{
+        this.$router.push('/front/person'); // 跳转到个人页面，这里假设使用了 Vue Router
+      }
+
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           this.form.tags = JSON.stringify(this.tagsArr)  // 把json数组转换成json字符串存到数据库
@@ -94,6 +117,8 @@ export default {
             if (res.code === '200') {  // 表示成功保存
               this.$message.success('保存成功')
             } else {
+              // 表单验证失败，不执行保存操作，显示验证提示信息
+
               this.$message.error(res.msg)  // 弹出错误的信息
             }
           })

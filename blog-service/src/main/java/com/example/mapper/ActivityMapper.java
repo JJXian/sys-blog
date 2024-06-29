@@ -29,7 +29,7 @@ public interface ActivityMapper extends BaseMapper<Activity> {
     /**
      * 根据ID查询
      */
-//    Activity selectById(Integer id);
+    Activity selectById(Integer id);
 
     /**
      * 查询所有

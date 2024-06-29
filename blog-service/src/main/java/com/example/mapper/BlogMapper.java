@@ -32,7 +32,7 @@ public interface BlogMapper extends BaseMapper<Blog> {
     /**
      * 根据ID查询
      */
-//    Blog selectById(Integer id);
+    Blog selectById(Integer id);
 
     /**
      * 查询所有

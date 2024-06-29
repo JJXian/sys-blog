@@ -34,7 +34,7 @@ public class BlogController {
      */
     @DeleteMapping("/delete/{id}")
     public Result deleteById(@PathVariable Integer id) {
-        blogService.removeById(id);
+        blogService.deleteById(id);
         return Result.success();
     }
 
@@ -67,7 +67,7 @@ public class BlogController {
      */
     @GetMapping("/selectById/{id}")
     public Result selectById(@PathVariable Integer id) {
-        Blog blog = blogService.getById(id);
+        Blog blog = blogService.selectById(id);
         return Result.success(blog);
     }
 
@@ -135,6 +135,7 @@ public class BlogController {
         PageInfo<Blog> page = blogService.selectComment(blog, pageNum, pageSize);
         return Result.success(page);
     }
+    
 
     /**
      * 博客榜单

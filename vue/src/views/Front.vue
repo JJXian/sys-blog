@@ -17,7 +17,7 @@
         </div>
       </div>
       <div>
-        <el-input style="width: 260px; margin-right: 10px" placeholder="请输入关键字搜索" v-model="title" clearable></el-input>
+        <el-input style="width: 260px; margin-right: 10px" placeholder="请输入博客关键字" v-model="title" clearable></el-input>
         <el-button type="success" @click="goSearch">搜 索</el-button>
       </div>
       <div class="front-header-right">
@@ -35,8 +35,12 @@
             </div>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item>
+                <div style="text-decoration: none" @click="goToPerson">个人中心</div>
+              </el-dropdown-item>
+              <el-dropdown-item>
                 <div style="text-decoration: none" @click="logout">退出</div>
               </el-dropdown-item>
+
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -97,6 +101,9 @@ export default {
     logout() {
       localStorage.removeItem("xm-user");
       this.$router.push("/login");
+    },
+    goToPerson(){
+      location.href = '/front/person'
     },
   }
 

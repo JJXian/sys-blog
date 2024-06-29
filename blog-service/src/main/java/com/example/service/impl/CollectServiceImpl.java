@@ -43,4 +43,5 @@ public class CollectServiceImpl extends ServiceImpl<CollectMapper,Collect> imple
         return collectMapper.selectByFidAndModule(fid, module);
     }
 
+
 }

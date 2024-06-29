@@ -5,4 +5,6 @@ import com.example.entity.Collect;
 
 public interface CollectService extends IService<Collect> {
     void set(Collect collect);
+
+
 }

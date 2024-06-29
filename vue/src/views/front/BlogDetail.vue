@@ -26,6 +26,7 @@
           <span style=" cursor: pointer"  @click="setCollect" :class="{ 'active' : blog.userCollect }"><i class="el-icon-star-off"></i> {{ blog.collectCount }}</span>
         </div>
 
+
 <!--        评论-->
         <Comment :fid="blogId" module='博客' />
 
@@ -33,6 +34,7 @@
 
       <div style="width: 260px">
         <div class="card" style="margin-bottom: 10px">
+
           <div style="display: flex; align-items: center; grid-gap: 10px; margin-bottom: 10px">
             <img :src="blog.user?.avatar" alt="" style="width: 50px; height: 50px; border-radius: 50%">
             <div style="flex: 1;">
@@ -45,6 +47,7 @@
             <div style="flex: 1; text-align: center">
               <div style="margin-bottom: 5px">文章</div>
               <div style="color: #888">{{ blog.user?.blogCount }}</div>
+
             </div>
             <div style="flex: 1; text-align: center">
               <div style="margin-bottom: 5px">点赞</div>
@@ -120,7 +123,6 @@ export default {
       this.$request.post('/likes/set', {  fid: this.blogId, module: '博客' }).then(res => {
         if (res.code === '200') {
           this.$message.success('操作成功')
-
           this.load()  // 重新加载数据
         }
       })
@@ -180,6 +182,7 @@ p {
 
 .active {
   color: orange !important;
+  //color: #ff187c !important;
 }
 .recommend-title {
   margin-bottom: 5px;

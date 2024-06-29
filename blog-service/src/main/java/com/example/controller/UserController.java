@@ -5,7 +5,6 @@ import com.example.entity.User;
 import com.example.service.UserService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class UserController {
     @PostMapping("/add")
     public Result add(@RequestBody User user) {
         userService.add(user);
+
         return Result.success();
     }
 

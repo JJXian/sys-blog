@@ -4,11 +4,10 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.common.enums.LikesModuleEnum;
-import com.example.common.enums.RoleEnum;
 import com.example.entity.*;
+import com.example.enums.LikesModuleEnum;
+import com.example.enums.RoleEnum;
 import com.example.mapper.BlogMapper;
 import com.example.service.BlogService;
 import com.example.utils.TokenUtils;
@@ -196,6 +195,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements Blo
         return pageInfo;
     }
 
+
     public PageInfo<Blog> selectCollect(Blog blog, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();
         if (RoleEnum.USER.name().equals(currentUser.getRole())) {
@@ -212,6 +212,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements Blo
         return pageInfo;
     }
 
+
     public PageInfo<Blog> selectComment(Blog blog, Integer pageNum, Integer pageSize) {
         Account currentUser = TokenUtils.getCurrentUser();
         if (RoleEnum.USER.name().equals(currentUser.getRole())) {
@@ -221,10 +222,11 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper,Blog> implements Blo
         List<Blog> list = blogMapper.selectComment(blog);
         PageInfo<Blog> pageInfo = PageInfo.of(list);
         List<Blog> blogList = pageInfo.getList();
-        for (Blog b : blogList) {
+        for (Blog b : blogList){
             int likesCount = likesService.selectByFidAndModule(b.getId(), LikesModuleEnum.BLOG.getValue());
             b.setLikesCount(likesCount);
         }
         return pageInfo;
     }
+
 }

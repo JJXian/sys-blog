@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="search">
+
       <el-input placeholder="请输入标题查询" style="width: 200px; margin-right: 10px" v-model="title"></el-input>
       <el-input placeholder="请输入分类查询" style="width: 200px; margin-right: 10px" v-model="categoryName"></el-input>
       <el-input placeholder="请输入用户名称查询" style="width: 200px" v-model="userName"></el-input>
@@ -35,7 +36,7 @@
         </el-table-column>
         <el-table-column prop="userName" label="发布人"></el-table-column>
         <el-table-column prop="date" label="发布日期"></el-table-column>
-        <el-table-column prop="readCount" label="浏览量"></el-table-column>
+<!--        <el-table-column prop="readCount" label="浏览量"></el-table-column>-->
         <el-table-column label="查看内容">
           <template v-slot="scope">
             <el-button @click="preview(scope.row.content)">查看内容</el-button>

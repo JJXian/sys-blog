@@ -2,9 +2,9 @@ package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.common.enums.RoleEnum;
 import com.example.entity.Account;
 import com.example.entity.Comment;
+import com.example.enums.RoleEnum;
 import com.example.mapper.CommentMapper;
 import com.example.service.CommentService;
 import com.example.utils.TokenUtils;

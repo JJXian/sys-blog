@@ -1,6 +1,7 @@
 package com.example.exception;
 
-import com.example.common.enums.ResultCodeEnum;
+
+import com.example.enums.ResultCodeEnum;
 
 public class CustomException extends RuntimeException {
     private String code;

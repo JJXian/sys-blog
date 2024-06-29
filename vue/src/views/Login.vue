@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="width: 380px; padding: 50px 30px; background-color: white; border-radius: 5px;">
+    <div style="width: 400px; padding: 50px 30px; background-color: white; border-radius: 5px;">
       <div style="text-align: center; font-size: 24px; margin-bottom: 30px; color: #333">博客平台</div>
       <el-form :model="form" :rules="rules" ref="formRef"@keyup.enter.native="login">
         <el-form-item prop="username">
@@ -119,11 +119,13 @@ export default {
   height: 100vh;
   overflow: hidden;
   background-image: url("@/assets/imgs/bg3.jpg");
-  background-size: 100%;
+  //background-size: 100%;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #666;
+
 }
 a {
   color: #2a60c9;

@@ -2,9 +2,9 @@ package com.example.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.example.common.enums.ResultCodeEnum;
 import com.example.entity.Account;
 import com.example.entity.ActivitySign;
+import com.example.enums.ResultCodeEnum;
 import com.example.exception.CustomException;
 import com.example.mapper.ActivitySignMapper;
 import com.example.service.ActivitySignService;
